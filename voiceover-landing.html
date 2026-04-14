@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Name — Voice Over Artist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FAF7F2;
+    --warm-white: #FFFDF9;
+    --sand: #F0EAE0;
+    --terracotta: #C4664A;
+    --terracotta-light: #E8937A;
+    --terracotta-pale: #F5E6E0;
+    --brown: #5C3D2E;
+    --brown-mid: #8B6352;
+    --text-dark: #2D1F17;
+    --text-mid: #6B4D3A;
+    --text-light: #A08070;
+    --border: rgba(92, 61, 46, 0.12);
+    --border-mid: rgba(92, 61, 46, 0.22);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--cream);
+    color: var(--text-dark);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(250, 247, 242, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'Lora', serif;
+    font-size: 1.1rem;
+    color: var(--brown);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-mid);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--terracotta); }
+
+  .nav-cta {
+    background: var(--terracotta) !important;
+    color: white !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: 100px;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--brown) !important; color: white !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 64px 0 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    gap: 4rem;
+  }
+
+  .hero-text { padding-top: 2rem; }
+
+  .hero-eyebrow {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-title {
+    font-family: 'Lora', serif;
+    font-size: clamp(2.5rem, 4vw, 3.75rem);
+    line-height: 1.18;
+    color: var(--brown);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--terracotta);
+  }
+
+  .hero-subtitle {
+    font-size: 1.125rem;
+    color: var(--text-mid);
+    font-weight: 300;
+    max-width: 440px;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--terracotta);
+    color: white;
+    padding: 0.875rem 2rem;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9375rem;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--brown); transform: translateY(-1px); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--brown);
+    padding: 0.875rem 2rem;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9375rem;
+    border: 1.5px solid var(--border-mid);
+    transition: border-color 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+
+  .btn-secondary:hover { border-color: var(--terracotta); color: var(--terracotta); transform: translateY(-1px); }
+
+  /* HERO VISUAL */
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .hero-avatar-wrap {
+    position: relative;
+    width: 360px;
+    height: 420px;
+  }
+
+  .avatar-blob {
+    position: absolute;
+    inset: 0;
+    background: var(--terracotta-pale);
+    border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
+    animation: blobFloat 7s ease-in-out infinite;
+  }
+
+  @keyframes blobFloat {
+    0%, 100% { border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%; transform: translateY(0); }
+    50% { border-radius: 45% 55% 40% 60% / 60% 40% 55% 45%; transform: translateY(-10px); }
+  }
+
+  .avatar-placeholder {
+    position: absolute;
+    inset: 20px;
+    background: var(--sand);
+    border-radius: 55% 45% 50% 50% / 48% 58% 42% 52%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    overflow: hidden;
+  }
+
+  .avatar-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+    display: none; /* shown when src is set */
+  }
+
+  .avatar-icon {
+    width: 64px;
+    height: 64px;
+    opacity: 0.3;
+  }
+
+  .avatar-hint {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    text-align: center;
+    padding: 0 2rem;
+    line-height: 1.5;
+  }
+
+  .waveform-badge {
+    position: absolute;
+    bottom: 32px;
+    right: -20px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 0.75rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    box-shadow: 0 4px 24px rgba(92,61,46,0.10);
+  }
+
+  .badge-dot {
+    width: 8px; height: 8px;
+    background: var(--terracotta);
+    border-radius: 50%;
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .badge-text {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--text-mid);
+  }
+
+  /* SECTION STYLES */
+  .section {
+    padding: 6rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-divider {
+    height: 1px;
+    background: var(--border);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 4rem;
+  }
+
+  .section-divider-inner {
+    height: 1px;
+    background: var(--border);
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Lora', serif;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    color: var(--brown);
+    line-height: 1.25;
+    margin-bottom: 1rem;
+  }
+
+  .section-body {
+    font-size: 1.0625rem;
+    color: var(--text-mid);
+    font-weight: 300;
+    line-height: 1.85;
+  }
+
+  /* DEMOS */
+  .demos-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+
+  .demo-card {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .demo-card:hover {
+    border-color: var(--terracotta-light);
+    box-shadow: 0 4px 20px rgba(196, 102, 74, 0.08);
+  }
+
+  .play-btn {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: var(--terracotta-pale);
+    border: none;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .play-btn:hover { background: var(--terracotta); transform: scale(1.05); }
+  .play-btn:hover svg path { fill: white; }
+  .play-btn.playing { background: var(--terracotta); }
+  .play-btn.playing svg path { fill: white; }
+
+  .play-btn svg { width: 20px; height: 20px; }
+
+  .demo-info { flex: 1; min-width: 0; }
+
+  .demo-title {
+    font-weight: 500;
+    font-size: 0.9375rem;
+    color: var(--text-dark);
+    margin-bottom: 0.2rem;
+  }
+
+  .demo-meta {
+    font-size: 0.8125rem;
+    color: var(--text-light);
+  }
+
+  .demo-waveform {
+    flex: 1;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    overflow: hidden;
+  }
+
+  .wave-bar {
+    width: 3px;
+    border-radius: 2px;
+    background: var(--border-mid);
+    flex-shrink: 0;
+    transition: background 0.2s;
+  }
+
+  .demo-card:hover .wave-bar { background: var(--terracotta-light); opacity: 0.5; }
+
+  .demo-duration {
+    font-size: 0.8125rem;
+    color: var(--text-light);
+    font-weight: 500;
+    min-width: 36px;
+    text-align: right;
+  }
+
+  /* Audio element */
+  audio { display: none; }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+    margin-top: 3rem;
+  }
+
+  .about-text .section-body { margin-bottom: 1.5rem; }
+
+  .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .skill-tag {
+    background: var(--terracotta-pale);
+    color: var(--terracotta);
+    border-radius: 100px;
+    padding: 0.35rem 1rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+  }
+
+  .stats-block {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .stat-card {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+  }
+
+  .stat-number {
+    font-family: 'Lora', serif;
+    font-size: 2.5rem;
+    color: var(--terracotta);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    font-weight: 400;
+  }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  /* CONTACT */
+  .contact-wrap {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 3rem;
+    max-width: 680px;
+    margin: 3rem auto 0;
+  }
+
+  .form-group {
+    margin-bottom: 1.25rem;
+  }
+
+  label {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--text-mid);
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.02em;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-mid);
+    border-radius: 10px;
+    background: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9375rem;
+    color: var(--text-dark);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    appearance: none;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--terracotta);
+    box-shadow: 0 0 0 3px rgba(196, 102, 74, 0.12);
+  }
+
+  textarea {
+    min-height: 130px;
+    resize: vertical;
+    line-height: 1.6;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .submit-btn {
+    width: 100%;
+    background: var(--terracotta);
+    color: white;
+    border: none;
+    border-radius: 100px;
+    padding: 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .submit-btn:hover { background: var(--brown); transform: translateY(-1px); }
+  .submit-btn:active { transform: translateY(0); }
+
+  .contact-aside {
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+
+  .contact-aside p {
+    font-size: 0.875rem;
+    color: var(--text-light);
+  }
+
+  .contact-aside a {
+    color: var(--terracotta);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--brown);
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    padding: 2.5rem;
+    font-size: 0.875rem;
+    margin-top: 4rem;
+  }
+
+  footer strong { color: white; }
+  footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+  footer a:hover { color: white; }
+
+  /* FADE IN ANIMATIONS */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 6rem 1.5rem 3rem;
+      gap: 2.5rem;
+    }
+
+    .hero-visual { order: -1; }
+    .hero-avatar-wrap { width: 280px; height: 320px; }
+    .waveform-badge { right: 0; }
+
+    .section { padding: 4rem 1.5rem; }
+    .section-divider { padding: 0 1.5rem; }
+
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .contact-wrap { padding: 2rem 1.5rem; }
+
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#top" class="nav-logo">Your Name</a>
+  <ul class="nav-links">
+    <li><a href="#demos">Listen</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Voice Over Artist</p>
+    <h1 class="hero-title">A voice that <em>connects</em> with your audience</h1>
+    <p class="hero-subtitle">Warm, conversational, and versatile. From commercials and narration to e-learning and audiobooks — I bring your words to life.</p>
+    <div class="hero-actions">
+      <a href="#demos" class="btn-primary">Listen to Demos</a>
+      <a href="#contact" class="btn-secondary">Work Together</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-avatar-wrap">
+      <div class="avatar-blob"></div>
+      <div class="avatar-placeholder">
+        <!-- Replace the SVG below with: <img src="your-photo.jpg" style="display:block;" alt="Your Name"> -->
+        <svg class="avatar-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="22" r="13" stroke="#8B6352" stroke-width="2"/>
+          <path d="M10 56c0-12.15 9.85-22 22-22s22 9.85 22 22" stroke="#8B6352" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <p class="avatar-hint">Replace with your photo</p>
+      </div>
+    </div>
+    <div class="waveform-badge">
+      <div class="badge-dot"></div>
+      <span class="badge-text">Available for projects</span>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"><div class="section-divider-inner"></div></div>
+
+<!-- DEMO REELS -->
+<section class="section" id="demos">
+  <div class="fade-in">
+    <p class="section-label">Listen</p>
+    <h2 class="section-title">Demo Reels</h2>
+    <p class="section-body" style="max-width:540px;">A selection of my recent work across different styles and genres. Click play to listen.</p>
+  </div>
+
+  <div class="demos-grid fade-in">
+
+    <!-- Demo 1 -->
+    <div class="demo-card">
+      <button class="play-btn" onclick="togglePlay(this, 'audio1')" aria-label="Play Commercial Demo">
+        <svg viewBox="0 0 20 20" fill="none">
+          <path class="play-icon" d="M6 4l10 6-10 6V4z" fill="#C4664A"/>
+        </svg>
+      </button>
+      <audio id="audio1" src="demo-commercial.mp3"></audio>
+      <div class="demo-info">
+        <p class="demo-title">Commercial Demo</p>
+        <p class="demo-meta">Conversational · Warm · Persuasive</p>
+      </div>
+      <div class="demo-waveform" id="wave1"></div>
+      <span class="demo-duration">1:02</span>
+    </div>
+
+    <!-- Demo 2 -->
+    <div class="demo-card">
+      <button class="play-btn" onclick="togglePlay(this, 'audio2')" aria-label="Play Narration Demo">
+        <svg viewBox="0 0 20 20" fill="none">
+          <path class="play-icon" d="M6 4l10 6-10 6V4z" fill="#C4664A"/>
+        </svg>
+      </button>
+      <audio id="audio2" src="demo-narration.mp3"></audio>
+      <div class="demo-info">
+        <p class="demo-title">Corporate Narration</p>
+        <p class="demo-meta">Clear · Authoritative · Engaging</p>
+      </div>
+      <div class="demo-waveform" id="wave2"></div>
+      <span class="demo-duration">0:58</span>
+    </div>
+
+    <!-- Demo 3 -->
+    <div class="demo-card">
+      <button class="play-btn" onclick="togglePlay(this, 'audio3')" aria-label="Play E-Learning Demo">
+        <svg viewBox="0 0 20 20" fill="none">
+          <path class="play-icon" d="M6 4l10 6-10 6V4z" fill="#C4664A"/>
+        </svg>
+      </button>
+      <audio id="audio3" src="demo-elearning.mp3"></audio>
+      <div class="demo-info">
+        <p class="demo-title">E-Learning & Training</p>
+        <p class="demo-meta">Friendly · Instructional · Patient</p>
+      </div>
+      <div class="demo-waveform" id="wave3"></div>
+      <span class="demo-duration">1:15</span>
+    </div>
+
+    <!-- Demo 4 -->
+    <div class="demo-card">
+      <button class="play-btn" onclick="togglePlay(this, 'audio4')" aria-label="Play Audiobook Demo">
+        <svg viewBox="0 0 20 20" fill="none">
+          <path class="play-icon" d="M6 4l10 6-10 6V4z" fill="#C4664A"/>
+        </svg>
+      </button>
+      <audio id="audio4" src="demo-audiobook.mp3"></audio>
+      <div class="demo-info">
+        <p class="demo-title">Audiobook Sample</p>
+        <p class="demo-meta">Expressive · Immersive · Character-rich</p>
+      </div>
+      <div class="demo-waveform" id="wave4"></div>
+      <span class="demo-duration">1:30</span>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"><div class="section-divider-inner"></div></div>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="about-grid">
+    <div class="about-text fade-in">
+      <p class="section-label">About Me</p>
+      <h2 class="section-title">A real human voice for your real human audience</h2>
+      <p class="section-body">Hi, I'm [Your Name] — a voice over artist based in [Your City]. I've been lending my voice to brands, educators, and storytellers for over [X] years, bringing warmth and clarity to every project I touch.</p>
+      <p class="section-body">Whether you need a neighbor-next-door commercial tone or a polished corporate narrator, I tailor my delivery to what your audience needs to hear — not just what sounds good in a booth.</p>
+      <p class="section-body">I record from a professionally treated home studio with broadcast-quality equipment, which means fast turnarounds and clean files, every time.</p>
+      <div class="skills-list">
+        <span class="skill-tag">Commercials</span>
+        <span class="skill-tag">E-Learning</span>
+        <span class="skill-tag">Corporate Narration</span>
+        <span class="skill-tag">Audiobooks</span>
+        <span class="skill-tag">Podcasts</span>
+        <span class="skill-tag">Explainer Videos</span>
+        <span class="skill-tag">IVR / Phone Systems</span>
+      </div>
+    </div>
+
+    <div class="stats-block fade-in">
+      <div class="stats-row">
+        <div class="stat-card">
+          <p class="stat-number">10+</p>
+          <p class="stat-label">Years of experience</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-number">500+</p>
+          <p class="stat-label">Projects completed</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <p class="stat-number">48hr</p>
+        <p class="stat-label">Typical turnaround time</p>
+      </div>
+      <div class="stat-card" style="background: var(--terracotta-pale); border-color: transparent;">
+        <p style="font-family:'Lora',serif; font-style:italic; font-size:1.0625rem; color:var(--brown); line-height:1.6; margin-bottom:0.75rem;">"Working with [Your Name] was an absolute joy. The delivery was spot-on and turnaround was faster than expected."</p>
+        <p style="font-size:0.8125rem; color:var(--text-mid); font-weight:500;">— Happy Client, Company Name</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"><div class="section-divider-inner"></div></div>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div style="text-align:center;" class="fade-in">
+    <p class="section-label">Get in Touch</p>
+    <h2 class="section-title">Let's make something great</h2>
+    <p class="section-body" style="max-width:480px; margin:0 auto;">Tell me about your project and I'll get back to you within one business day.</p>
+  </div>
+
+  <div class="contact-wrap fade-in">
+    <form onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Your name</label>
+          <input type="text" id="name" placeholder="Jane Smith" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" id="email" placeholder="jane@company.com" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="project-type">Project type</label>
+        <select id="project-type">
+          <option value="">Select a category...</option>
+          <option>Commercial</option>
+          <option>Corporate / Narration</option>
+          <option>E-Learning / Training</option>
+          <option>Audiobook</option>
+          <option>Explainer / Video</option>
+          <option>IVR / Phone System</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Tell me about your project</label>
+        <textarea id="message" placeholder="Describe your project, timeline, and any specific requirements..." required></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn" id="submit-btn">Send Message</button>
+    </form>
+
+    <div class="contact-aside">
+      <p>Prefer email? Reach me directly at <a href="mailto:hello@yourname.com">hello@yourname.com</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>Your Name</strong> · Voice Over Artist · <a href="mailto:hello@yourname.com">hello@yourname.com</a></p>
+  <p style="margin-top:0.5rem; font-size:0.8rem; opacity:0.5;">&copy; 2026 Your Name. All rights reserved.</p>
+</footer>
+
+<script>
+  // Generate waveform bars
+  ['wave1','wave2','wave3','wave4'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const count = 36;
+    for (let i = 0; i < count; i++) {
+      const bar = document.createElement('div');
+      bar.className = 'wave-bar';
+      const h = 6 + Math.random() * 26;
+      bar.style.height = h + 'px';
+      el.appendChild(bar);
+    }
+  });
+
+  // Audio play/pause toggle
+  let currentAudio = null;
+  let currentBtn = null;
+
+  function togglePlay(btn, audioId) {
+    const audio = document.getElementById(audioId);
+    const isPlaying = btn.classList.contains('playing');
+
+    if (currentAudio && currentAudio !== audio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+      if (currentBtn) {
+        currentBtn.classList.remove('playing');
+        currentBtn.querySelector('.play-icon').setAttribute('d', 'M6 4l10 6-10 6V4z');
+      }
+    }
+
+    if (isPlaying) {
+      audio.pause();
+      btn.classList.remove('playing');
+      btn.querySelector('.play-icon').setAttribute('d', 'M6 4l10 6-10 6V4z');
+      currentAudio = null;
+      currentBtn = null;
+    } else {
+      // Only plays if the src file exists; silent otherwise
+      audio.play().catch(() => {});
+      btn.classList.add('playing');
+      btn.querySelector('.play-icon').setAttribute('d', 'M6 4H9v12H6zm5 0h3v12h-3z'); // pause icon
+      currentAudio = audio;
+      currentBtn = btn;
+    }
+
+    audio.onended = () => {
+      btn.classList.remove('playing');
+      btn.querySelector('.play-icon').setAttribute('d', 'M6 4l10 6-10 6V4z');
+      currentAudio = null;
+      currentBtn = null;
+    };
+  }
+
+  // Contact form
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = 'Message sent!';
+      btn.style.background = '#5C3D2E';
+      e.target.reset();
+    }, 1200);
+  }
+
+  // Scroll fade-in
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
