@@ -404,6 +404,39 @@
 
   .about-text .section-body { margin-bottom: 1.5rem; }
 
+  .roles-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .role-item {
+    display: flex;
+    flex-direction: column;
+    padding: 0.625rem 0.875rem;
+    border-bottom: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+  }
+
+  .role-item:nth-child(even) { border-right: none; }
+  .role-item:nth-last-child(1),
+  .role-item:nth-last-child(2) { border-bottom: none; }
+
+  .role-character {
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--brown);
+  }
+
+  .role-show {
+    font-size: 0.78rem;
+    color: var(--text-light);
+    font-style: italic;
+  }
+
   .skills-list {
     display: flex;
     flex-wrap: wrap;
@@ -722,18 +755,31 @@
   <div class="about-grid">
     <div class="about-text fade-in">
       <p class="section-label">About Me</p>
-      <h2 class="section-title">A real human voice for your real human audience</h2>
-      <p class="section-body">Hi, I'm [Your Name] — a voice over artist based in [Your City]. I've been lending my voice to brands, educators, and storytellers for over [X] years, bringing warmth and clarity to every project I touch.</p>
-      <p class="section-body">Whether you need a neighbor-next-door commercial tone or a polished corporate narrator, I tailor my delivery to what your audience needs to hear — not just what sounds good in a booth.</p>
-      <p class="section-body">I record from a professionally treated home studio with broadcast-quality equipment, which means fast turnarounds and clean files, every time.</p>
-      <div class="skills-list">
-        <span class="skill-tag">Commercials</span>
-        <span class="skill-tag">E-Learning</span>
-        <span class="skill-tag">Corporate Narration</span>
+      <h2 class="section-title">Decades of performance. One unforgettable voice.</h2>
+      <p class="section-body">I'm a versatile voice actor with decades of performance experience, delivering everything from dark, theatrical narration to warm, character-driven storytelling. My range spans documentary authority, educational clarity, and engaging promotional reads.</p>
+      <p class="section-body">On the commercial side, I bring high-energy announcer spots, comedic character work, folksy authenticity, and regional accents. Adaptable, credible, and creative — I'm a strong fit for projects spanning audiobooks, documentaries, e-learning, advertising, and character voices.</p>
+      <p class="section-label" style="margin-top:2rem;">On Stage</p>
+      <p class="section-body" style="margin-bottom:1rem;">My voice is rooted in a rich theatrical background. Selected roles include:</p>
+      <div class="roles-grid">
+        <div class="role-item"><span class="role-character">Sir</span><span class="role-show">Roar of the Greasepaint</span></div>
+        <div class="role-item"><span class="role-character">Fagin</span><span class="role-show">Oliver!</span></div>
+        <div class="role-item"><span class="role-character">Tevye</span><span class="role-show">Fiddler on the Roof</span></div>
+        <div class="role-item"><span class="role-character">Scrooge</span><span class="role-show">Dickens of a Christmas</span></div>
+        <div class="role-item"><span class="role-character">Cowardly Lion</span><span class="role-show">Wizard of Oz</span></div>
+        <div class="role-item"><span class="role-character">Mayor Shin</span><span class="role-show">Music Man</span></div>
+        <div class="role-item"><span class="role-character">Lazar Wolf</span><span class="role-show">Fiddler on the Roof</span></div>
+        <div class="role-item"><span class="role-character">Dick Deadeye</span><span class="role-show">H.M.S. Pinafore</span></div>
+        <div class="role-item"><span class="role-character">Emile</span><span class="role-show">South Pacific</span></div>
+        <div class="role-item"><span class="role-character">Jeff</span><span class="role-show">Brigadoon</span></div>
+      </div>
+      <div class="skills-list" style="margin-top:1.75rem;">
         <span class="skill-tag">Audiobooks</span>
-        <span class="skill-tag">Podcasts</span>
-        <span class="skill-tag">Explainer Videos</span>
-        <span class="skill-tag">IVR / Phone Systems</span>
+        <span class="skill-tag">Documentaries</span>
+        <span class="skill-tag">E-Learning</span>
+        <span class="skill-tag">Commercials</span>
+        <span class="skill-tag">Character Voices</span>
+        <span class="skill-tag">Corporate Narration</span>
+        <span class="skill-tag">Regional Accents</span>
       </div>
     </div>
 
